@@ -54,6 +54,11 @@
     function load()
     {
         sgf = document.getElementById("originsgf").value;
+        clearTag();
+        stoneb = [];
+        stonew = [];
+        deadw = 0;
+        deadb = 0;
 /* todo: reset stones and graphics */
     }
     function forward()
@@ -61,7 +66,7 @@
         var s = reg.exec(sgf);
         if (s ==null)
         {
-            alert('sgf end! please reload');
+            alert('sgf end! please refresh page');
             sgf = '';
             return;
         }
