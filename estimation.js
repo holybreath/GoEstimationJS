@@ -103,8 +103,10 @@ function Estimation()
     this.groupsBlack = [];
     this.groupsWhite = [];
 
-    this.estimate = function (stoneblack,stonewhite,deadblacks=0,deadwhites=0)
+    this.estimate = function (stoneblack,stonewhite,deadblacks,deadwhites)
     {
+        deadblacks = deadblacks || 0;
+        deadwhites = deadwhites || 0;
         stoneb = stoneblack;
         stonew = stonewhite;
         potentialsb = [];
@@ -164,14 +166,15 @@ function Estimation()
         this.spaceWhite= spacew;
         this.groupsBlack = adsconb;
         this.groupsWhite = adsconw;
-        this.assumeDeadBlack = [];
-        this.assumeDeadWhite = [];
+        this.assumeDeadBlack = assumeDeadStoneb;
+        this.assumeDeadWhite = assumeDeadStonew;
         this.scoreBlack = spaceb.length+deadwhites;
         this.scoreWhite = spacew.length+deadblacks;
     }
     
-    this.checkDead = function (tempStoneb,tempStonew,newxy='')
+    this.checkDead = function (tempStoneb,tempStonew,newxy)
     {
+        newxy = newxy || '';
         var r = simpleConnect(tempStoneb,'b',tempStonew,tempStoneb);
         var tempSconb = r[0];
         r = simpleConnect(tempStonew,'w',tempStonew,tempStoneb);
@@ -559,8 +562,10 @@ function Estimation()
     }
     
 
-    function simpleConnect(source,type,sw=stonew,sb=stoneb)
+    function simpleConnect(source,type,sw,sb)
     {
+        sw = sw || stonew;
+        sb = sb || stoneb;
         var r = [];
         var connects = [];
         var conobj = {};
@@ -717,8 +722,10 @@ function Estimation()
         return xyrs;
     }
 
-    function countBreath(source,sw=stonew,sb=stoneb)
+    function countBreath(source,sw,sb)
     {
+        sw = sw || stonew;
+        sb = sb || stoneb;
         var r = [];
         for( var i15=0; i15<source.length; i15++)
         {
@@ -733,8 +740,11 @@ function Estimation()
         return r;
     }
     
-    function adjacent(xy,type='all',sw=stonew,sb=stoneb)
+    function adjacent(xy,type,sw,sb)
     {
+        type = type || 'all';
+        sw = sw || stonew;
+        sb = sb || stoneb;
         var r = [];
         var xoff = adjacentdic[xy.charAt(0)];
         var yoff = adjacentdic[xy.charAt(1)];

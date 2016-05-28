@@ -157,8 +157,9 @@
         }
     }
 
-    function checkDead(newxy='')
+    function checkDead(newxy)
     {
+        newxy = newxy || '';
         var r = estimator.checkDead(stoneb,stonew);
         var rb = r[0];
         var rw = r[1];
