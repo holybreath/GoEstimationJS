@@ -168,8 +168,8 @@ function Estimation()
         this.groupsWhite = adsconw;
         this.assumeDeadBlack = assumeDeadStoneb;
         this.assumeDeadWhite = assumeDeadStonew;
-        this.scoreBlack = spaceb.length+deadwhites;
-        this.scoreWhite = spacew.length+deadblacks;
+        this.scoreBlack = spaceb.length+deadwhites+assumeDeadStonew.length;
+        this.scoreWhite = spacew.length+deadblacks+assumeDeadStoneb.length;
     }
     
     this.checkDead = function (tempStoneb,tempStonew,newxy)
